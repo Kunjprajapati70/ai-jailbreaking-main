@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard – AI Jailbreak Arena</title>
+  <link rel="stylesheet" href="leaderboard-style.css">
+</head>
+<body>
+  <canvas id="matrixCanvas"></canvas>
+  <!-- <div class="scanlines"></div> -->
+
+  <div class="lb-page">
+
+    <div class="lb-header">
+      <div class="lb-badge">[ CLASSIFIED BREACH LOG ]</div>
+      <h1 class="lb-title">🏆 LEADERBOARD 🏆</h1>
+      <p class="lb-subtitle">Top agents who successfully extracted the secret code</p>
+    </div>
+
+    <div class="lb-stats-strip">
+      <div class="lb-stat">
+        <div class="lb-stat-val" id="totalWinners">—</div>
+        <div class="lb-stat-label">TOTAL BREACHES</div>
+      </div>
+      <div class="lb-stat-div"></div>
+      <div class="lb-stat">
+        <div class="lb-stat-val" id="avgAttempts">—</div>
+        <div class="lb-stat-label">AVG UPLINKS USED</div>
+      </div>
+      <div class="lb-stat-div"></div>
+      <div class="lb-stat">
+        <div class="lb-stat-val" id="lastWinner">—</div>
+        <div class="lb-stat-label">LAST BREACH</div>
+      </div>
+    </div>
+
+    <!-- LEADERBOARD CARD (podium + table inside) -->
+    <div class="lb-card">
+
+      <!-- PODIUM (hidden until data loads) -->
+      <div id="podiumSection" class="hidden">
+        <div class="podium-wrap">
+
+          <!-- 2nd place -->
+          <div class="podium-slot podium-2" id="podium2">
+            <div class="podium-medal">🥈</div>
+            <div class="podium-team" id="podium2Team">—</div>
+            <div class="podium-meta" id="podium2Meta"></div>
+            <div class="podium-block podium-block-2">
+              <span class="podium-rank">#2</span>
+            </div>
+          </div>
+
+          <!-- 1st place -->
+          <div class="podium-slot podium-1" id="podium1">
+            <div class="podium-crown">👑</div>
+            <div class="podium-medal">🥇</div>
+            <div class="podium-team" id="podium1Team">—</div>
+            <div class="podium-meta" id="podium1Meta"></div>
+            <div class="podium-block podium-block-1">
+              <span class="podium-rank">#1</span>
+            </div>
+          </div>
+
+          <!-- 3rd place -->
+          <div class="podium-slot podium-3" id="podium3">
+            <div class="podium-medal">🥉</div>
+            <div class="podium-team" id="podium3Team">—</div>
+            <div class="podium-meta" id="podium3Meta"></div>
+            <div class="podium-block podium-block-3">
+              <span class="podium-rank">#3</span>
+            </div>
+          </div>
+
+        </div>
+        <div class="podium-stage-floor"></div>
+      </div>
+
+      <!-- TABLE HEADER -->
+      <div class="lb-row lb-row-header">
+        <div class="lb-col lb-col-rank">RANK</div>
+        <div class="lb-col lb-col-team">AGENT</div>
+        <div class="lb-col lb-col-attempts">UPLINKS USED</div>
+        <div class="lb-col lb-col-time">TIME</div>
+        <div class="lb-col lb-col-date">TIMESTAMP</div>
+      </div>
+
+      <!-- TABLE BODY -->
+      <div id="leaderboardBody" class="lb-body">
+        <div class="lb-loading">⟳ ACCESSING CLASSIFIED DATA…</div>
+      </div>
+
+    </div>
+
+    <div class="lb-actions">
+      <button class="lb-btn lb-btn-cyan" onclick="refreshLeaderboard()">⟳ REFRESH</button>
+      <button class="lb-btn lb-btn-magenta" onclick="goBack()">← BACK TO ARENA</button>
+    </div>
+
+  </div>
+
+  <script src="leaderboard.js"></script>
+</body>
+</html>
