@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { teams, leaderboard } = require("../models/collections");
+const { teams, leaderboard, teamChatCollection } = require("../models/collections");
 
 const API_KEY = process.env.GROQ_API_KEY;
 const SECRET  = process.env.SECRET;
@@ -90,6 +90,16 @@ Begin.
         );
 
         const aiReply = aiResponse.data.choices[0].message.content;
+
+        try {
+            await teamChatCollection(teamId).insertOne({
+                message,
+                reply: aiReply,
+                timestamp: new Date().toISOString()
+            });
+        } catch (dbErr) {
+            console.error("[chatController] Error saving chat to team's database collection:", dbErr.message);
+        }
 
         if (aiReply.includes(SECRET)) {
             const freshTeam        = await teams().findOne({ teamId });
